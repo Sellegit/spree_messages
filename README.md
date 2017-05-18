@@ -7,7 +7,7 @@ Introduction goes here.
 
 1. Add this extension to your Gemfile with this line:
   ```ruby
-  gem 'spree_messages', github: '[your-github-handle]/spree_messages'
+  gem 'spree_messages', github: 'Sellegit/spree_messages'
   ```
 
 2. Install the gem using Bundler:
@@ -47,5 +47,4 @@ If you'd like to contribute, please take a look at the
 [instructions](CONTRIBUTING.md) for installing dependencies and crafting a good
 pull request.
 
-Copyright (c) 2017 [name of extension creator], released under the New BSD License
-# spree_messages
+Copyright (c) 2017 Sellegit, released under the New BSD License

@@ -1,0 +1,65 @@
+<% content_for :page_title do %>
+	<%= Spree.t(:personal_messages) %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_personal_messages_index_search">
+    <%= search_form_for [:admin, @search] do |f| %>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<%= label_tag :q_title_cont, Spree::Message.human_attribute_name(:title) %>
+						<%= f.text_field :title_cont, size: 25, class: 'form-control' %>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<%= label_tag :q_content_cont, Spree::Message.human_attribute_name(:content) %>
+						<%= f.text_field :content_cont, size: 25, class: 'form-control' %>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-actions" data-hook="admin_personal_messages_index_search_buttons">
+				<%= button Spree.t(:filter_results), 'search' %>
+			</div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= render 'spree/admin/shared/index_table_options', collection: @personal_messages %>
+
+<% if @personal_messages.any? %>
+	<table class="table" id="listing_personal_messages">
+		<thead>
+			<tr>
+				<th><%= sort_link @search, :id, Spree::Message.human_attribute_name(:id) %></th>
+				<th><%= sort_link @search, :title, Spree::Message.human_attribute_name(:title) %></th>
+				<th><%= sort_link @search, :content, Spree::Message.human_attribute_name(:content) %></th>
+				<th><%= sort_link @search, :message_type, Spree::Message.human_attribute_name(:message_type) %></th>
+				<th><%= sort_link @search, :user, Spree::Message.human_attribute_name(:user) %></th>
+				<th><%= sort_link @search, :updated_at, Spree::Message.human_attribute_name(:updated_at) %></th>
+				<th><%= sort_link @search, :created_at, Spree::Message.human_attribute_name(:created_at) %></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @personal_messages.each do |personal_message| %>
+				<tr data-hook="admin_personal_messages_index_rows" id="<%= dom_id personal_message %>" class="<%= cycle('odd', 'even') %>">
+					<td><%= personal_message.id %></td>
+					<td><%= personal_message.title %></td>
+					<td><%= personal_message.content %></td>
+					<td><%= personal_message.message_type %></td>
+					<td><%= personal_message.user.try(:email) %></td>
+					<td><%= l personal_message.updated_at, format: :short %></td>
+					<td><%= l personal_message.created_at, format: :short %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% else %>
+	<div class="alert alert-info no-objects-found">
+		<%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/personal_message', count: '')) %>
+	</div>
+<% end %>
+
+<%= render 'spree/admin/shared/index_table_options', collection: @personal_messages %>

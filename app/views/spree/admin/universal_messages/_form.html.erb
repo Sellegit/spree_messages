@@ -1,0 +1,39 @@
+<%= render 'spree/shared/error_messages', target: @universal_message %>
+
+<div class="form-group">
+  <%= f.label :title %>
+  <%= f.text_field :title, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :content %>
+  <%= f.text_area :content, wrap: 'virtual', rows: 10, cols: 60, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :route %>
+  <%= f.text_field :route, class: 'form-control' %>
+</div>
+
+<div class="col-md-12" style="margin-top: 30px;">
+    <div data-hook="message_image">
+        <%= f.field_container :message_image, class: ['form-group'] do %>
+            <%= f.label :message_image, raw("Message Image (won't be resized)" + content_tag(:span, ' * ', class: 'required')) %>
+            <br/>
+            <%= f.error_message_on :message_image %>
+            <% if @universal_message.message_image %>
+                <%= link_to image_tag(
+                    @universal_message.message_image.attachment.url(),
+                    width: @universal_message.message_image.attachment_width/3,
+                    height: @universal_message.message_image.attachment_height/3),
+                    @universal_message.message_image.attachment.url()
+                %>
+        <% else %>
+            <span>No Message Image Yet</span>
+        <% end %>
+        <br/>
+        <br/>
+        <%= f.file_field :attachment, name: "universal_message[message_image][attachment]" %>
+    <% end %>
+    </div>
+</div>

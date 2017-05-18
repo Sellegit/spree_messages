@@ -1,0 +1,68 @@
+<% content_for :page_title do %>
+	<%= Spree.t(:universal_messages) %>
+<% end %>
+
+<% content_for :page_actions do %>
+    <%= button_link_to Spree.t(:new_universal_message), new_object_url, {:class => "btn-success", :icon => 'add', :id => 'admin_new_universal_message'} %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_universal_messages_index_search">
+    <%= search_form_for [:admin, @search] do |f| %>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<%= label_tag :q_title_cont, Spree::Message.human_attribute_name(:title) %>
+						<%= f.text_field :title_cont, size: 25, class: 'form-control' %>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<%= label_tag :q_content_cont, Spree::Message.human_attribute_name(:content) %>
+						<%= f.text_field :content_cont, size: 25, class: 'form-control' %>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-actions" data-hook="admin_universal_messages_index_search_buttons">
+				<%= button Spree.t(:filter_results), 'search' %>
+			</div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= render 'spree/admin/shared/index_table_options', collection: @universal_messages %>
+
+<% if @universal_messages.any? %>
+	<table class="table" id="listing_universal_messages">
+		<thead>
+			<tr>
+				<th><%= sort_link @search, :id, Spree::Message.human_attribute_name(:id) %></th>
+				<th><%= sort_link @search, :title, Spree::Message.human_attribute_name(:title) %></th>
+				<th><%= sort_link @search, :updated_at, Spree::Message.human_attribute_name(:updated_at) %></th>
+				<th><%= sort_link @search, :created_at, Spree::Message.human_attribute_name(:created_at) %></th>
+				<th data-hook="admin_universal_messages_index_header_actions" class="actions"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @universal_messages.each do |universal_message| %>
+				<tr data-hook="admin_universal_messages_index_rows" id="<%= dom_id universal_message %>" class="<%= cycle('odd', 'even') %>">
+					<td><%= universal_message.id %></td>
+					<td><%= universal_message.title %></td>
+					<td><%= l universal_message.updated_at, format: :short %></td>
+					<td><%= l universal_message.created_at, format: :short %></td>
+					<td data-hook="admin_universal_messages_index_row_actions" class="actions">
+						<%= link_to_edit universal_message, no_text: true, class: 'edit' %>
+						<%= link_to_delete universal_message, no_text: true %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% else %>
+	<div class="alert alert-info no-objects-found">
+		<%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/universal_message', count: '')) %>
+	</div>
+<% end %>
+
+<%= render 'spree/admin/shared/index_table_options', collection: @universal_messages %>

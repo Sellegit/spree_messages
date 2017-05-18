@@ -1,0 +1,27 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  spree:
+    messages: Messages
+  activerecord:
+    attributes:
+      spree/universal_message:
+        title: Title
+        content: Content
+        route: Route 
+        created_at: Created At 
+        updated_at: Updated At 
+      spree/personal_message:
+        title: Title
+        content: Content
+        route: Route 
+        created_at: Created At 
+        updated_at: Updated At 
+    models:
+      spree/universal_message:
+        one: one message
+        other: "%{count} messages"
+      spree/personal_message:
+        one: one message
+        other: "%{count} messages"

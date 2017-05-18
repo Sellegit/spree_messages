@@ -1,0 +1,12 @@
+<% content_for :page_title do %>
+	<%= Spree.t(:edit_universal_message) %>
+<% end %>
+
+<%= form_for [:admin, @universal_message] do |f| %>
+	<div class="row">
+		<div class="col-md-12">
+			<%= render 'form', f: f %>
+		</div>
+	</div>
+	<%= render 'spree/admin/shared/edit_resource_links' %>
+<% end %>
