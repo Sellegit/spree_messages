@@ -4,7 +4,7 @@ module Spree
 
     has_attached_file :attachment,
                       styles: {universal: '800x800>'},
-                      default_style: :product,
+                      default_style: :universal,
                       convert_options: { all: '-strip -auto-orient -interlace Plane -quality 80' } #  -colorspace sRGB' }
     validates_attachment :attachment,
       :presence => true,
