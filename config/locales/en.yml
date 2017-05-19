@@ -25,3 +25,8 @@ en:
       spree/personal_message:
         one: one message
         other: "%{count} messages"
+        shipment_updated_title: Shipment Updated
+        shipment_updated_content: "Your shipment #%{shipment_number} of order #%{order_number} has been shipped. Click to view detail."
+        order_canceled_title: Order Canceled 
+        order_canceled_content: "Your order #%{order_number} has been canceled. Click to view detail."
+
