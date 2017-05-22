@@ -12,7 +12,7 @@ Spree::Order.class_eval do
         content: content, 
         user_id: user.id,
         message_type: Spree::Message::MESSAGE_TYPE_ORDER_CANCELED,
-        route: 'app:orders'    # TODO: to be separated
+        route: "app:orders/#{order.id}"    # TODO: to be separated
       )
     end
   end

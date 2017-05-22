@@ -13,7 +13,7 @@ Spree::Shipment.class_eval do
         content: content, 
         user_id: user.id,
         message_type: Spree::Message::MESSAGE_TYPE_SHIPMENT_UPDATED,
-        route: 'app:orders'    #TODO: to be separated
+        route: "app:orders/#{shipment.order.id}"    #TODO: to be separated
       )
     end
   end
