@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.version     = SpreeMessages.version
   s.summary     = 'Add extension summary here'
   s.description = 'Add (optional) extension description here'
-  s.required_ruby_version = '>= 2.2.2'
+  s.required_ruby_version = '>= 2.1.0'
 
   s.author    = 'Simple'
   s.email     = 'simple.continue@gmail.com'
